@@ -1,6 +1,8 @@
 from manim import *
+from manim_editor import PresentationSectionType
 
 # from manim_slides import Slide
+config.disable_caching = True
 
 
 class Intro(Scene):
@@ -14,6 +16,7 @@ class Intro(Scene):
 
 class Differences(Scene):
     def construct(self):
+
         title = Text("Composants").move_to(UP * 3)
         self.add(title)
 
@@ -21,7 +24,8 @@ class Differences(Scene):
         cpu_img.height = 4
         cpu_text = Text("CPU").scale(1).next_to(cpu_img, DOWN)
         cpu_sub_text = (
-            Text("(Central Processing Unit)").scale(0.5).next_to(cpu_text, DOWN)
+            Text("(Central Processing Unit)").scale(
+                0.5).next_to(cpu_text, DOWN)
         )
         cpu_group = Group(cpu_img, cpu_text, cpu_sub_text)
 
@@ -33,7 +37,8 @@ class Differences(Scene):
         gpu_img.height = 4
         gpu_text = Text("GPU").scale(1).next_to(gpu_img, DOWN)
         gpu_sub_text = (
-            Text("(Graphics Processing Unit)").scale(0.5).next_to(gpu_text, DOWN)
+            Text("(Graphics Processing Unit)").scale(
+                0.5).next_to(gpu_text, DOWN)
         )
         gpu_group = Group(gpu_img, gpu_text, gpu_sub_text)
 
@@ -41,7 +46,7 @@ class Differences(Scene):
         self.play(gpu_group.animate.scale(0.75).move_to(RIGHT * 4.5 + UP * 0))
 
         arrow_cpu_gpu = DoubleArrow(cpu_img, gpu_img).move_to(UP * -0.5)
-        self.play(Create(arrow_cpu_gpu))
+        self.play(GrowArrow(arrow_cpu_gpu))
 
         self.wait()
 
@@ -83,20 +88,21 @@ class Differences(Scene):
 
 class CodeCPU(Scene):
     def construct(self):
-        title = Text("Processeur").move_to(UP * 3)
-        self.add(title)
+        self.next_section("B-code.title")
+        title = Text("Processeur").move_to(UP * 3.5 + LEFT * 5)
+        self.play(Create(title))
 
-        cpu_img = ImageMobject("images/01/cpu.png")
-        cpu_img.height = 1
-
-        cpu_img.next_to(title, RIGHT)
+        self.next_section("B-code.simple-code")
 
         code = """
-liste = [4,5,8,3,4,7,6,9]
-resultat = []
-for i in len(liste):
-    resultat[i] = liste[i] ** 2
-print(resultat)
+n = 1
+for i in range(100):
+    if n>0:
+        n = n * -11 
+    else:
+        n = n + 105
+    
+    print(n)
     """.strip()
         rendered_code = Code(
             code=code,
@@ -107,10 +113,40 @@ print(resultat)
             style="fruity",
             line_spacing=0.5,
         )
-        self.play(AddTextWordByWord(rendered_code))
+        rendered_code.width = 6
+        rendered_code.move_to(LEFT * 3.5)
 
-        Wait()
+        ax = Axes(
+            x_range=[0, 100, 3],
+            y_range=[-2000, 200, 100],
+            axis_config={"include_numbers": False, "color": GRAY},
 
+            tips=False,
+        )
+        ax.width = 6
+        ax.move_to(RIGHT * 3.5)
+        xlst = range(100)
+        ylst = []
+        n = 1
+        for i in xlst:
+            if n > 0:
+                n = n * -11
+            else:
+                n = n + 105
+
+            ylst.append(n)
+
+        graph = ax.plot_line_graph(xlst, ylst, line_color=color.rgba_to_color(
+            (0, 0, 0, 0)), vertex_dot_radius=0.03, vertex_dot_style={"stroke_width": 2, "fill_color": BLUE})
+
+        self.play(Create(ax), AddTextWordByWord(rendered_code))  # type: ignore
+
+        self.next_section("B-code.simple-graph")
+        self.play(Create(graph), run_time=5)
+
+        self.next_section("B-code.michel-base")
+
+        self.play(FadeOut(ax), FadeOut(graph), FadeOut(rendered_code))
 
         with open("scripts/michel.py", "r") as f:
             code = f.read()
@@ -123,7 +159,37 @@ print(resultat)
             font="Monospace",
             style="fruity",
             line_spacing=0.5,
-        ).scale_to_fit_height(6).move_to(LEFT * 4 + )
+        ).scale_to_fit_height(6)
 
-        self.play(Transform(rendered_code, michelCode))
+        michelBase = ImageMobject(
+            "images/michel.jpg")
+        michelBase.height = 4
+        # michelCode.to_corner()
+        self.play(GrowFromCenter(michelBase))
 
+        self.next_section("B-code.michel-code")
+
+        self.play(michelBase.animate.scale(0.75).move_to(RIGHT * 5 + UP * 2))
+
+        self.play(GrowFromCenter(michelCode))
+        self.next_section("B-code.michel-result")
+        # self.play(michelCode.animate.to_corner(LEFT + DOWN))
+
+        michelAfter = ImageMobject(
+            "images/michel-b.png").move_to(RIGHT * 5 + DOWN * 2)
+        michelAfter.height = 4
+
+        michelAfter.scale(0.75)
+
+        arrow = Arrow(michelBase.get_bottom(), michelAfter.get_top())
+
+        self.play(GrowFromCenter(michelAfter), GrowArrow(arrow))
+
+        metrics = Text("""
+        Dimensions de l'image: 1200x1600
+        => 1_920_000 pixels 
+        ~ 30 op / pixel
+        30_920_000 op pour 1 image
+
+        CPU 3Ghz = 3_000_000_000 op / s
+        """)

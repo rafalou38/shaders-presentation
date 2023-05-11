@@ -8,12 +8,9 @@ $env:Path = "$env:Path;F:\lycée\MATHS\SHADERS\ffmpeg-6.0\bin"
 ```
 
 1. Fonctionnement du PC `3m`
-   1. Calculs
-      1. CPU
-   2. Affichage 
-      1. GPU
-         1. IA 
-         2. BlockChain 
+   1. Difference HARDWARE entre CPU et GPU
+   2. Difference code / exemples:
+      1. Processus classique, 
 2. Rapport avec Maths `2m`
    1. Equations cartésiennes
       1. Pourquoi
