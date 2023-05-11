@@ -1,0 +1,26 @@
+{
+	"name": "Manim",
+	"build": {
+		"dockerfile": "Dockerfile",
+		"context": ".."
+	},
+
+	"customizations": {
+		"vscode": {
+			"settings": {
+                "workbench.iconTheme": "material-icon-theme",
+                "workbench.colorTheme": "Default Dark Modern"
+            },
+			"extensions": [
+				"dracula-theme.theme-dracula",
+                "PKief.material-icon-theme",
+                "ms-python.vscode-pylance",
+                "ms-python.python"
+			]
+		}
+	},
+
+	"features": {
+		"git": "latest"
+	}
+}
