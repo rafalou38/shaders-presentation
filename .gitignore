@@ -1,0 +1,6 @@
+media/
+__pycache__/
+env/
+ffmpeg-6.0/
+slides/
+*.log
