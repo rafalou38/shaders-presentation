@@ -10,7 +10,7 @@ import os
 import shutil
 import subprocess
 
-config.disable_caching = True
+config.disable_caching = False
 
 # 'fourk_quality', 'production_quality', 'high_quality', 'medium_quality', 'low_quality', 'example_quality'
 config.quality = "high_quality"
@@ -20,7 +20,6 @@ slides = [
     PC1,
     PC2,
     M1,
-    # M2,
     S1,
     S2,
     F1,

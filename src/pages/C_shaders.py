@@ -133,8 +133,6 @@ def mainImage(x, y):
 
             self.next_slide()
         self.wait(0.5)
-        self.next_slide()
-        self.wait(0.5)
 
 
 # MandelBroot
@@ -143,12 +141,11 @@ class S2(Slide):
         title = Text("Exemples sophistiquées")
         self.play(Write(title))
         self.next_slide()
+
         self.play(title.animate.become(
             Text("Ensemble de Julia").scale(0.5).to_edge(UP)))
-
         eq = MathTex(r"{\displaystyle z_{n+1}=z_{n}^{2}+c.}", font_size=96)
         self.play(Write(eq))
-
         self.next_slide()
 
         julia = ImageMobject(
@@ -157,18 +154,19 @@ class S2(Slide):
         self.next_slide()
 
         self.clear()
-        self.wait()
+        t = Text("LIFE")
+        self.play(Create(t))
         self.next_slide()
 
         self.clear()
-        self.wait()
-
+        t = Text("WORLD")
+        self.play(Create(t))
         self.next_slide()
+        self.clear()
 
         cave = ImageMobject(
             "images/cave.png").scale_to_fit_height(config.frame_height)
         self.play(FadeIn(cave))
-
         self.wait(0.5)
         self.next_slide()
         self.wait(0.5)
