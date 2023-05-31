@@ -1,6 +1,7 @@
 media/
 __pycache__/
 env/
+myenv/
 ffmpeg-6.0/
 slides/
 *.log

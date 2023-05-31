@@ -7,19 +7,22 @@ pip install manim manim-slides
 $env:Path = "$env:Path;F:\lycée\MATHS\SHADERS\ffmpeg-6.0\bin"
 ```
 
-1. Fonctionnement du PC `3m`
-   1. Difference HARDWARE entre CPU et GPU
-   2. Difference code / exemples:
-      1. Processus classique, 
-2. Rapport avec Maths `2m`
-   1. Equations cartésiennes
-      1. Pourquoi
-      2. Comment
-3. Les shaders `5m`
-   1. Formes `3m`
+
+```
+M1 M2
+```
+
+1. Fonctionnement d'un PC `3m` V
+   1. Difference HARDWARE entre CPU et GPU V
+   2. Difference code
+2. Maths et shaders `2m` V
+   1. Qu'est ce qu'un shader `M1`
+   2. Rappel équations cartésiennes `M2`
       1. Cercle
       2. Droite
-      3. Hyperbole
+3. Exemples de shaders `5m` V
+   1. Formes `3m`
+      1. Cercle V
    2. Fractales `2m`
       1. Mandelbrot
       2. *Conway ?*
@@ -30,3 +33,13 @@ sources:
 - GoogleImages
    - https://www.scan.co.uk/buying-guides/graphics/nvidia-quadro-cards
    - Big_Buck_Bunny: https://fr.wikipedia.org/wiki/Big_Buck_Bunny
+ - SmoothLife: chronos
+ - Fractal Land: Kali
+ - Fractal Cave: Inigo Quilez, @iquilezles and iquilezles.org
+
+
+
+
+TODO:
+-  CHanger image PC2
+-  Reviser mesures PC2
