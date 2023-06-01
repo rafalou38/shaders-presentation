@@ -17,13 +17,13 @@ config.quality = "high_quality"
 
 slides = [
     INTRO,
-    PC1,
-    PC2,
-    M1,
-    S1,
-    S2,
-    F1,
-    F2,
+    # PC1,
+    # PC2,
+    # M1,
+    # S1,
+    # S2,
+    # F1,
+    # F2,
 ]
 
 
